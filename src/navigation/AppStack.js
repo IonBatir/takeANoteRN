@@ -28,6 +28,7 @@ export default function AppStack() {
           name={NOTE_SCREEN}
           component={Note}
           options={{
+            headerBackTitle: 'Notes',
             title: 'Note',
           }}
         />
@@ -35,6 +36,7 @@ export default function AppStack() {
           name={ADD_NOTE_SCREEN}
           component={AddNote}
           options={{
+            headerBackTitle: 'Notes',
             title: 'Add Note',
           }}
         />
