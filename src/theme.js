@@ -23,9 +23,4 @@ export const FONT_SIZE = {
   EXTRA_EXTRA_LARGE: 32,
 };
 
-export const DEBUG = {
-  borderWidth: 1,
-  borderColor: COLOR.RED,
-};
-
 export const LIST_ITEM_HEIGHT = 75;
