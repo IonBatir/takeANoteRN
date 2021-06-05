@@ -10,6 +10,7 @@ export const COLOR = {
   WHITE: '#FFF',
   BLACK: '#000',
   TRANSPARENT: 'rgba(255, 255, 255, 0)',
+  GREY: 'rgba(11, 13, 15, 0.5)',
 };
 
 export const FONT_SIZE = {
