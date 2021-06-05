@@ -3,9 +3,7 @@ import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
-import NotesScreen from '../screens/Notes';
-import NoteScreen from '../screens/Note';
-import AddNoteScreen from '../screens/AddNote';
+import {Notes, Note, AddNote} from '../screens';
 import {NOTES_SCREEN, NOTE_SCREEN, ADD_NOTE_SCREEN} from '../constants';
 
 const Stack = createStackNavigator();
@@ -20,7 +18,7 @@ export default function AppStack() {
       <Stack.Navigator initialRouteName={NOTES_SCREEN}>
         <Stack.Screen
           name={NOTES_SCREEN}
-          component={NotesScreen}
+          component={Notes}
           options={({navigation}) => ({
             headerRight: () => <AddNoteButton navigation={navigation} />,
             title: 'Take A Note',
@@ -28,14 +26,14 @@ export default function AppStack() {
         />
         <Stack.Screen
           name={NOTE_SCREEN}
-          component={NoteScreen}
+          component={Note}
           options={{
             title: 'Note',
           }}
         />
         <Stack.Screen
           name={ADD_NOTE_SCREEN}
-          component={AddNoteScreen}
+          component={AddNote}
           options={{
             title: 'Add Note',
           }}
