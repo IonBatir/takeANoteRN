@@ -11,10 +11,7 @@ import {NOTES_SCREEN, NOTE_SCREEN, ADD_NOTE_SCREEN} from '../constants';
 const Stack = createStackNavigator();
 
 const AddNoteButton = ({navigation}) => (
-  <Button
-    onPress={() => navigation.navigate(ADD_NOTE_SCREEN)}
-    title="Add Note"
-  />
+  <Button onPress={() => navigation.navigate(ADD_NOTE_SCREEN)} title="➕" />
 );
 
 export default function AppStack() {
