@@ -1,7 +1,7 @@
 import React from 'react';
 import {SafeAreaView, Text, StyleSheet} from 'react-native';
 
-export default function App() {
+export default function AddNote() {
   return (
     <SafeAreaView style={styles.centerContainer}>
       <Text>AddNote</Text>
