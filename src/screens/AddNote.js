@@ -23,7 +23,7 @@ export default function AddNote({navigation}) {
     addNote(title, content)
       .then(() => navigation.navigate(NOTES_SCREEN))
       .catch(ErrorAlert)
-      .finally(setIsLoading(false));
+      .finally(() => setIsLoading(false));
   };
 
   if (isLoading) {
