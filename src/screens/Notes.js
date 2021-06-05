@@ -1,11 +1,20 @@
 import React, {useState} from 'react';
-import {SafeAreaView, View, Text, FlatList, StyleSheet} from 'react-native';
+import {
+  SafeAreaView,
+  View,
+  Text,
+  FlatList,
+  StyleSheet,
+  Animated,
+} from 'react-native';
+import {RectButton} from 'react-native-gesture-handler';
 import {useFocusEffect} from '@react-navigation/native';
+import Swipeable from 'react-native-gesture-handler/Swipeable';
 
 import {Note, Spinner, ErrorAlert} from '../components';
 import {FONT_SIZE, SPACING, LIST_ITEM_HEIGHT} from '../theme';
 import {NOTE_SCREEN} from '../constants';
-import {getNotes} from '../api';
+import {deleteNote, getNotes} from '../api';
 
 export default function Notes({navigation}) {
   const [notes, setNotes] = useState({data: [], isLoading: true});
@@ -21,13 +30,47 @@ export default function Notes({navigation}) {
     }, []),
   );
 
-  const renderNote = ({item}) => (
-    <Note
-      title={item.title}
-      content={item.content}
-      handlePress={() => navigation.navigate(NOTE_SCREEN, {...item})}
-    />
-  );
+  const renderNote = ({item}) => {
+    const renderRightActions = progress => {
+      const trans = progress.interpolate({
+        inputRange: [0, 1],
+        outputRange: [64, 0],
+      });
+
+      const handleDeleteNote = () => {
+        setNotes({isLoading: true, data: []});
+        deleteNote(item.id)
+          .then(() =>
+            getNotes().then(data => setNotes({isLoading: false, data})),
+          )
+          .catch(() => {
+            setNotes({isLoading: false, data: []});
+            ErrorAlert();
+          });
+      };
+
+      return (
+        <View style={styles.swipeableView}>
+          <Animated.View
+            style={[styles.animatedView, {transform: [{translateX: trans}]}]}>
+            <RectButton style={styles.rightAction} onPress={handleDeleteNote}>
+              <Text style={styles.actionText}>Delete</Text>
+            </RectButton>
+          </Animated.View>
+        </View>
+      );
+    };
+
+    return (
+      <Swipeable renderRightActions={renderRightActions}>
+        <Note
+          title={item.title}
+          content={item.content}
+          handlePress={() => navigation.navigate(NOTE_SCREEN, {...item})}
+        />
+      </Swipeable>
+    );
+  };
 
   if (notes.isLoading) {
     return <Spinner />;
@@ -77,5 +120,28 @@ const styles = StyleSheet.create({
   },
   list: {
     flex: 1,
+  },
+  swipeableView: {
+    width: 75,
+  },
+  animatedView: {
+    flex: 1,
+  },
+  leftAction: {
+    flex: 1,
+    backgroundColor: '#497AFC',
+    justifyContent: 'center',
+  },
+  actionText: {
+    color: 'white',
+    fontSize: 16,
+    backgroundColor: 'transparent',
+    padding: 10,
+  },
+  rightAction: {
+    alignItems: 'center',
+    flex: 1,
+    justifyContent: 'center',
+    backgroundColor: 'red',
   },
 });
