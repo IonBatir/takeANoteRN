@@ -5,7 +5,9 @@ export const getNotes = () =>
     .then(notesKeys => AsyncStorage.multiGet(notesKeys))
     .then(notes =>
       Promise.resolve(
-        notes.map(note => ({id: note[0], ...JSON.parse(note[1])})),
+        notes
+          .map(note => ({id: note[0], ...JSON.parse(note[1])}))
+          .sort((a, b) => a.id < b.id),
       ),
     );
 
