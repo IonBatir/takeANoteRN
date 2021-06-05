@@ -14,4 +14,4 @@ export const getNotes = () =>
 export const addNote = (title, content) =>
   AsyncStorage.setItem('@' + Date.now(), JSON.stringify({title, content}));
 
-export const deleteNote = key => AsyncStorage.removeItem('@' + key);
+export const deleteNote = key => AsyncStorage.removeItem(key);
