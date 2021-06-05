@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {Button} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -26,7 +26,7 @@ export default function AppStack() {
           component={NotesScreen}
           options={({navigation}) => ({
             headerRight: () => <AddNoteButton navigation={navigation} />,
-            title: 'Notes',
+            title: 'Take A Note',
           })}
         />
         <Stack.Screen
