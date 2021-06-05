@@ -27,7 +27,7 @@ export default function AppStack() {
           name={NOTES_SCREEN}
           component={NotesScreen}
           options={({navigation}) => ({
-            headerRight: <AddNoteButton navigate={navigation} />,
+            headerRight: () => <AddNoteButton navigation={navigation} />,
             title: 'Notes',
           })}
         />
