@@ -43,6 +43,7 @@ export default function AddNote({navigation}) {
           onChangeText={setTitle}
           value={title}
           placeholder="Title"
+          autoCorrect={false}
         />
         <TextInput
           style={styles.contentInput}
@@ -50,6 +51,7 @@ export default function AddNote({navigation}) {
           value={content}
           placeholder="Content"
           multiline
+          autoCorrect={false}
         />
       </View>
       <View>
