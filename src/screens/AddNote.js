@@ -48,7 +48,7 @@ export default function AddNote({navigation}) {
           multiline
         />
       </View>
-      <View style={styles.button}>
+      <View>
         <Button title="Add" onPress={handleAddNote} />
       </View>
     </SafeAreaView>
@@ -78,5 +78,4 @@ const styles = StyleSheet.create({
     fontStyle: 'italic',
     marginTop: SPACING.SMALL,
   },
-  button: {},
 });
