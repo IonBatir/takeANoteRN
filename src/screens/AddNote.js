@@ -19,6 +19,10 @@ export default function AddNote({navigation}) {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddNote = () => {
+    if (!title || !content) {
+      return;
+    }
+
     setIsLoading(true);
     addNote(title, content)
       .then(() => navigation.navigate(NOTES_SCREEN))
